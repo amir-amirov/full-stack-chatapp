@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# ChatApp - Real-Time Messaging Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**ChatApp** is a fully functional, real-time chat application built using React.js and Firebase. It provides users with a seamless messaging experience, allowing them to communicate via text or images and manage their profiles. The application features a clean, responsive design and includes key functionalities such as user authentication, real-time messaging, and profile management.
 
-## Available Scripts
+## Features
+- **User Authentication**: Sign up and log in securely using Firebase Authentication.
+- **Real-Time Messaging**: Send text messages and images in real-time using Firebase Firestore.
+- **Responsive Chat Interface**: View and interact with conversations in a responsive layout. The chat page includes:
+  - **Left Sidebar**: Search for users by username and view your list of chats.
+  - **Main Chat Area**: Display messages, send text or images, and engage in real-time conversations.
+  - **Right Sidebar**: View details of the current chat participant and see a gallery of shared images.
+- **Profile Management**: Update your profile (name, avatar) in profile page
+- **Image Uploading**: Easily upload images using Firebase Storage and the Firebase Web Modular API.
+- **Notifications**: Success and error notifications are shown using `react-toastify`.
+- **Optimized Performance**: Leveraged React hooks like `useState`, `useRef`, and `useEffect` for state management and responsiveness.
+- **Efficient Data Storage**: Used Firebase Firestore to store messages and user data in a NoSQL format, ensuring efficient real-time data retrieval.
 
-In the project directory, you can run:
+## Technologies Used
+- **Frontend**: React.js, React Router DOM, React Hook Form, Context API, Firebase Web Modular API.
+- **Backend**: Firebase Authentication, Firestore, Firebase Storage.
+- **Styling**: CSS Grid, Flexbox, Media Queries for responsive design.
+- **Notifications**: React Toastify.
+- **Data Operations**: Utilized standard Firebase functions (`doc`, `setDoc`, `addDoc`, `getDoc`, `updateDoc`) to handle Firestore queries, alongside array manipulation methods like `map`, `sort`, and `forEach`.
 
-### `npm start`
+## Firebase Firestore Database Design
+The NoSQL database is structured for scalability and efficient querying. It includes the following collections:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Users Collection**: Stores user profiles with fields such as `id`, `username`,`email`,`name`, `bio`, and `avatar`.
+2. **Chats Collection**: Each document identified by user id and contains chatsData array of chats for each user. chatsData is an array of objects. Each object has information about chat like the `messageId`, `rid` (receiver ID), `lastMessage`, and `updatedAt` timestamp.
+3. **Messages Collection**: Stores the chat messages for each conversation. Each document is identified by uniques `messageId` and contains messages which is an array of objects. Each object has information of a message: `sId` (sender ID), `text` (message content), and `createdAt` timestamp.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Pages
+1. **Login**: Includes both login and sign-up forms using Firebase Authentication and `react-hook-form`.
+2. **Profile**: Allows users to update their name and avatar.
+3. **Chat**: The core page for messaging, consisting of a left sidebar (chats list and search), main chat area (messages and image sharing), and right sidebar (participant details and media gallery).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
+To run this project locally:
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/amir-amirov/full-stack-chatapp.git
+   ```
+   
+2. Navigate to the project directory:
+   ```bash
+   cd chat-app
+   ```
+   
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+   
+4. Run the development server:
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app should now be running at `http://localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Conclusion
+This real-time chat app demonstrates how React.js can be integrated with Firebase to create dynamic, scalable applications. With its robust authentication, real-time messaging, and image handling capabilities.
