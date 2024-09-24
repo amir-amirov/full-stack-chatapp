@@ -15,10 +15,10 @@ const AppContextProvider = ({children}) => {
     // when creating chatsData for both users.
 
     const [userData, setUserData] = useState(null)  // sender data from "users" collection
-    const [chatData, setChatData] = useState([])  // sidebar chats data of the sender
+    const [chatData, setChatData] = useState(null)  // sidebar chats data of the sender
     const [messagesId, setMessagesId] = useState(null) // id for main chat (document id in "messages")
     const [messages, setMessages] = useState([]) // the document with this id has messages array and is stored here
-    const [chatUser, setChatUser] = useState(null) // store data of user you're chatting with
+    const [chatUser, setChatUser] = useState(null) // store data of user you're chatting with + your particular chatsData 
     // Mainly need rId (the person we're chatting with)
 
     const [chatVisible, setChatVisible] = useState(false) // For responsive design
