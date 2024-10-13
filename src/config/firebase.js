@@ -19,15 +19,18 @@ export const db = getFirestore(app)
 
 export const signUp = async(username, email, password) => {
   try{
+
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
     const user = userCredentials.user
-  
+
+    const defaultAvatar = 'https://firebasestorage.googleapis.com/v0/b/chat-app-e2ad2.appspot.com/o/images%2Favatar_icon.png?alt=media&token=2ae0cf20-afff-4f7f-9c3c-2b6d97f35fc8'
+
     await setDoc(doc(db, "users", user.uid), {
       id: user.uid,
       email: email,
       username: username.toLowerCase(),
       name: "",
-      avatar: "",
+      avatar: defaultAvatar,
       bio: "Hi there! I am using chat app",
       lastSeen: Date.now()
     })

@@ -98,7 +98,7 @@ const LeftSidebar = () => {
       const uSnap = await getDoc(doc(db, "users", user.id))
       const uData = uSnap.data()
       setChat({
-        messagesId: newMessageRef.id,
+        messageId: newMessageRef.id,
         lastMessage: "",
         rId: user.id,
         updatedAt: Date.now(),

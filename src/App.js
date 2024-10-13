@@ -12,7 +12,7 @@ import { AppContext } from "./context/AppContext";
 function App() {
 
   const navigate = useNavigate()
-  const { loadUserData } = useContext(AppContext)
+  const { loadUserData, setUserData, setChatData, setMessagesId, setMessages, setChatUser } = useContext(AppContext)
 
   useEffect( () => {
     onAuthStateChanged(auth, async(user) => {
@@ -21,6 +21,11 @@ function App() {
       }
       else{
         navigate("/")
+        setUserData(null)
+        setChatData([])
+        setMessagesId(null)
+        setMessages([])
+        setChatUser(null)
       }
     })
   }, [])

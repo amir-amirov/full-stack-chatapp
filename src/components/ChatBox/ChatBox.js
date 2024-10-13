@@ -14,8 +14,13 @@ const ChatBox = () => {
   const [input, setInput] = useState("")
 
   const sendMessage = async() => {
+    console.log("Trying to send message..")
+    console.log("This is input: ", input)
+    console.log("This is messagesId: ", messagesId)
+
     try{
       if(input && messagesId){
+        console.log("Start sending message..")
         await updateDoc(doc(db, "messages", messagesId),{
           messages: arrayUnion({
             sId: userData.id,
@@ -96,16 +101,36 @@ const ChatBox = () => {
     }
   }
 
+  // const convertTimestamp = (timestamp) => {
+  //   let date = timestamp.toDate()
+  //   const hour = date.getHours()
+  //   const minute = date.getMinutes()
+  //   if(hour > 12){
+  //     return hour - 12 + ":" + minute + " PM"
+  //   }
+  //   else{
+  //     return hour + ":" + minute + " AM"
+  //   }
+  // }
+
+  
   const convertTimestamp = (timestamp) => {
-    let date = timestamp.toDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    if(hour > 12){
-      return hour - 12 + ":" + minute + " PM"
+    let date;
+    if (timestamp && typeof timestamp.toDate === 'function') {
+      date = timestamp.toDate();
+    } else if (timestamp && typeof timestamp === 'object' && 'seconds' in timestamp) {
+      date = new Date(timestamp.seconds * 1000);
+    } else {
+      date = new Date(timestamp);
     }
-    else{
-      return hour + ":" + minute + " AM"
-    }
+
+    const hour = date.getHours() + 5;
+    const minute = date.getMinutes();
+    const formattedTime = `${hour % 12 || 12}:${minute < 10 ? '0' + minute : minute} ${
+      hour >= 12 ? 'PM' : 'AM'
+    }`;
+
+    return formattedTime;
   }
 
 
